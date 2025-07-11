@@ -38,7 +38,12 @@ services:
       - hODRL
 
   metadata-store:
-    image: stain/jena-fuseki
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM stain/jena-fuseki
+        COPY metadata-store/config.ttl /fuseki/config.ttl
+        COPY metadata-store/vocabulary.ttl /fuseki/vocabulary.ttl
     container_name: hODRL-metadata-store
     restart: unless-stopped
     ports:
@@ -47,9 +52,6 @@ services:
       ADMIN_PASSWORD: admin
     volumes:
       - jena-data:/fuseki
-      - ./fuseki/config.ttl:/fuseki/config.ttl
-      - ./fuseki/vocabulary.ttl:/fuseki/vocabulary.ttl
-      - ./crater/base_model.ttl:/fuseki/data.ttl
     networks:
       - hODRL
 
