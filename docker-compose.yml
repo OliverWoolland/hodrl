@@ -1,0 +1,63 @@
+services:
+  ui:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM python:3.13-slim
+        COPY ui/requirements.txt ./requirements.txt
+        RUN pip install -r ./requirements.txt
+        COPY ui /app
+        CMD ["python", "-u", "/app/app.py"]
+    container_name: hODRL-ui
+    restart: unless-stopped
+    ports:
+      - '8050:8050'
+    volumes:
+      - ./ui/:/app/
+    networks:
+      - hODRL
+
+  api:
+    build:
+      context: .
+      dockerfile_inline: |        
+        FROM python:3.12-slim
+        WORKDIR /app
+        COPY ./api/requirements.txt /app/requirements.txt
+        RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+        COPY ./api /app
+        CMD ["fastapi", "run", "app/main.py", "--port", "8000", "--workers", "4"]
+    container_name: hODRL-api
+    restart: unless-stopped
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./api/:/app/
+    command: uvicorn main:app --host 0.0.0.0 --reload
+    networks:
+      - hODRL
+
+  metadata-store:
+    image: stain/jena-fuseki
+    container_name: hODRL-metadata-store
+    restart: unless-stopped
+    ports:
+      - "3030:3030"
+    environment:
+      ADMIN_PASSWORD: admin
+    volumes:
+      - jena-data:/fuseki
+      - ./fuseki/config.ttl:/fuseki/config.ttl
+      - ./fuseki/vocabulary.ttl:/fuseki/vocabulary.ttl
+      - ./crater/base_model.ttl:/fuseki/data.ttl
+    networks:
+      - hODRL
+
+networks:
+  hODRL:
+    name: hODRL
+
+volumes:
+  jena-data:
+    name: jena-data
+  
