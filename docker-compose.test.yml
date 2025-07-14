@@ -2,4 +2,4 @@ services:
   metadata-store:
     volumes:
       - jena-data:/fuseki
-      - ./test/data/ODRL-w3c-examples.ttl:/fuseki/data.ttl
+      - ./hODRL/test/data/ODRL-w3c-examples.ttl:/fuseki/data.ttl
