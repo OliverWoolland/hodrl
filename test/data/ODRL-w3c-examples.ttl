@@ -1,0 +1,33 @@
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+
+################################################################################
+## Examples from https://www.w3.org/TR/odrl-model/
+
+## Example 1 (Set Class)
+<http://example.com/policy:1010>
+  a odrl:Set ;
+  odrl:permission [
+    odrl:action odrl:use ;
+    odrl:target <http://example.com/asset:9898.movie>
+  ] .
+
+## Example 2 (Offer Class)
+<http://example.com/policy:1011>
+  a odrl:Offer ;
+  odrl:permission [
+    odrl:action odrl:play ;
+    odrl:assigner <http://example.com/party:org:abc> ;
+    odrl:target <http://example.com/asset:9898.movie>
+  ] ;
+  odrl:profile <http://example.com/odrl:profile:01> .
+
+## Example 3 (Agreement Class)
+<http://example.com/policy:1012>
+  a odrl:Agreement ;
+  odrl:permission [
+    odrl:action odrl:play ;
+    odrl:assignee <http://example.com/party:person:billie> ;
+    odrl:assigner <http://example.com/party:org:abc> ;
+    odrl:target <http://example.com/asset:9898.movie>
+  ] ;
+  odrl:profile <http://example.com/odrl:profile:01> .

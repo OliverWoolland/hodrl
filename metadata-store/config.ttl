@@ -32,10 +32,10 @@ PREFIX ja:      <http://jena.hpl.hp.com/2005/11/Assembler#>
 
 ## Transactional in-memory dataset.
 :baseDataset rdf:type ja:MemoryDataset ;
-#    ja:data <file:data.ttl>;
-#    .
-    ja:namedGraph [
-        ja:graphName <urn:system:latest> ;
-        ja:data <file:data.ttl>
-    ];
-    .
+   ja:data <file:data.ttl>;
+   .
+    # ja:namedGraph [
+    #     ja:graphName <urn:system:latest> ;
+    #     ja:data <file:data.ttl>
+    # ];
+    # .
