@@ -2,6 +2,7 @@
 name = "hodrl"
 version = "v0.1.0"
 dependencies = [
+  "click>=8.0"
 ]
 requires-python = ">=3.10"
 authors = [
@@ -20,10 +21,25 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = [
+    "pytest"
+]
+ui = [
+  "dash",
+  "dash-iconify",
+  "dash-bootstrap-components",
+  "dash-mantine-components",
+]
+api = [
+  "fastapi==0.116.0",
+  "uvicorn==0.35.0"
+]
+
 
 [project.urls]
 Repository = "https://github.com/OliverWoolland/hodrl.git"
 
 [project.scripts]
 hodrl = "hodrl:main"
+hodrl-api = "hodrl.api:main"
+hodrl-ui = "hodrl.ui.app:main"

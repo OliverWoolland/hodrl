@@ -4,16 +4,13 @@ services:
       context: .
       dockerfile_inline: |
         FROM python:3.13-slim
-        COPY ui/requirements.txt ./requirements.txt
-        RUN pip install -r ./requirements.txt
-        COPY ui /app
-        CMD ["python", "-u", "/app/app.py"]
+        COPY . /hodrl
+        RUN pip install ./hodrl[ui]
+        CMD ["hodrl-ui"]
     container_name: hODRL-ui
     restart: unless-stopped
     ports:
       - '8050:8050'
-    volumes:
-      - ./ui/:/app/
     networks:
       - hODRL
 
@@ -21,12 +18,11 @@ services:
     build:
       context: .
       dockerfile_inline: |        
-        FROM python:3.12-slim
-        WORKDIR /app
-        COPY ./api/requirements.txt /app/requirements.txt
-        RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
-        COPY ./api /app
-        CMD ["fastapi", "run", "app/main.py", "--port", "8000", "--workers", "4"]
+        FROM python:3.13-slim
+        COPY . /hodrl
+        RUN pip install ./hodrl[api]
+        CMD ["hodrl-api"]
+        #CMD ["fastapi", "run", "app/main.py", "--port", "8000", "--workers", "4"]
     container_name: hODRL-api
     restart: unless-stopped
     ports:
@@ -42,8 +38,8 @@ services:
       context: .
       dockerfile_inline: |
         FROM stain/jena-fuseki
-        COPY metadata-store/config.ttl /fuseki/config.ttl
-        COPY metadata-store/vocabulary.ttl /fuseki/vocabulary.ttl
+        COPY config/metadata-store/config.ttl /fuseki/config.ttl
+        COPY config/metadata-store/vocabulary.ttl /fuseki/vocabulary.ttl
     container_name: hODRL-metadata-store
     restart: unless-stopped
     ports:
