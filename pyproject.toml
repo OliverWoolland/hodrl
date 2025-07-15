@@ -1,9 +1,7 @@
 [project]
 name = "hodrl"
 version = "v0.1.0"
-dependencies = [
-  "click>=8.0"
-]
+#dependencies = []
 requires-python = ">=3.10"
 authors = [
   {name = "Oliver Woolland", email = "oliver.woolland@manchester.ac.uk"},
@@ -24,6 +22,9 @@ classifiers = [
 dev = [
     "pytest"
 ]
+cli = [     
+  "click>=8.0"  
+]
 ui = [
   "dash",
   "dash-iconify",
@@ -35,11 +36,11 @@ api = [
   "uvicorn==0.35.0"
 ]
 
-
 [project.urls]
 Repository = "https://github.com/OliverWoolland/hodrl.git"
 
 [project.scripts]
 hodrl = "hodrl:main"
+hodrl-cli = "hodrl.cli:main"
 hodrl-api = "hodrl.api:main"
 hodrl-ui = "hodrl.ui.app:main"
