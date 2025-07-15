@@ -27,13 +27,17 @@ services:
     networks:
       - hODRL
 
-  metadata-store:
+  cli:
     build:
       context: .
-      dockerfile_inline: |
-        FROM stain/jena-fuseki
-        COPY config/metadata-store/config.ttl /fuseki/config.ttl
-        COPY config/metadata-store/vocabulary.ttl /fuseki/vocabulary.ttl
+      dockerfile: Dockerfile.hodrl
+      args:
+        HODRL_CLIENT: cli
+    command: hodrl-cli
+    container_name: hODRL-cli
+    profiles: ["manual"]
+    networks:
+      - hODRL
 
   metadata-store:
     image: stain/jena-fuseki
