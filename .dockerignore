@@ -1,5 +1,3 @@
 docker-compose*.yml
 docker-compose.test.yml
-LICENSE
-README.md
 config
