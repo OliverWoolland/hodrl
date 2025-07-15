@@ -2,11 +2,10 @@ services:
   ui:
     build:
       context: .
-      dockerfile_inline: |
-        FROM python:3.13-slim
-        COPY . /hodrl
-        RUN pip install ./hodrl[ui]
-        CMD ["hodrl-ui"]
+      dockerfile: Dockerfile.hodrl
+      args:
+        HODRL_CLIENT: ui
+    command: hodrl-ui
     container_name: hODRL-ui
     restart: unless-stopped
     ports:
@@ -17,19 +16,14 @@ services:
   api:
     build:
       context: .
-      dockerfile_inline: |        
-        FROM python:3.13-slim
-        COPY . /hodrl
-        RUN pip install ./hodrl[api]
-        CMD ["hodrl-api"]
-        #CMD ["fastapi", "run", "app/main.py", "--port", "8000", "--workers", "4"]
+      dockerfile: Dockerfile.hodrl
+      args:
+        HODRL_CLIENT: api
+    command: hodrl-api
     container_name: hODRL-api
     restart: unless-stopped
     ports:
       - '8000:8000'
-    volumes:
-      - ./api/:/app/
-    command: uvicorn main:app --host 0.0.0.0 --reload
     networks:
       - hODRL
 

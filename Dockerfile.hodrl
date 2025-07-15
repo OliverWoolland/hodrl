@@ -1,0 +1,6 @@
+FROM python:3.13-slim
+COPY . /hodrl
+WORKDIR /hodrl
+ARG HODRL_CLIENT=""
+RUN pip install .[${HODRL_CLIENT}]
+CMD ["hodrl"]
