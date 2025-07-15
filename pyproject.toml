@@ -14,7 +14,7 @@ maintainers = [
 description = "hODRL: Keep the hordes at bay with Python execution of ODRL policies."
 readme = "README.md"
 license = "MIT"
-license-files = ["LICEN[CS]E.*"]
+license-files = ["LICENSE"]
 keywords = ["odrl", "rdf"]
 classifiers = [
   "Programming Language :: Python"
