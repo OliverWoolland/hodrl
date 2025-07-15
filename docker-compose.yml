@@ -40,6 +40,9 @@ services:
         FROM stain/jena-fuseki
         COPY config/metadata-store/config.ttl /fuseki/config.ttl
         COPY config/metadata-store/vocabulary.ttl /fuseki/vocabulary.ttl
+
+  metadata-store:
+    image: stain/jena-fuseki
     container_name: hODRL-metadata-store
     restart: unless-stopped
     ports:
@@ -48,6 +51,9 @@ services:
       ADMIN_PASSWORD: admin
     volumes:
       - jena-data:/fuseki
+      - ./config/metadata-store/config.ttl:/fuseki/config.ttl
+      - ./config/metadata-store/vocabulary.ttl:/fuseki/vocabulary.ttl
+      - ./hodrl/test/data/ODRL-w3c-examples.ttl:/fuseki/data.ttl # temporary2
     networks:
       - hODRL
 
