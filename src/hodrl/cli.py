@@ -20,7 +20,7 @@ def asset():
 @asset.command(name="ls")
 def asset_list_all():
     result = asset_queries.get_all_assets()
-    return result
+    click.echo(result)
 
 # ------------------------------------------------------------------------------
 # Python entrypoint
