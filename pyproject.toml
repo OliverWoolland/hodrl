@@ -1,7 +1,9 @@
 [project]
 name = "hodrl"
 version = "v0.1.0"
-#dependencies = []
+dependencies = [
+  "sparqlwrapper"
+]
 requires-python = ">=3.10"
 authors = [
   {name = "Oliver Woolland", email = "oliver.woolland@manchester.ac.uk"},
@@ -17,6 +19,10 @@ keywords = ["odrl", "rdf"]
 classifiers = [
   "Programming Language :: Python"
 ]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["hodrl"]
 
 [project.optional-dependencies]
 dev = [

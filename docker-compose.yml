@@ -33,7 +33,7 @@ services:
       dockerfile: Dockerfile.hodrl
       args:
         HODRL_CLIENT: cli
-    command: hodrl-cli
+    entrypoint: hodrl-cli
     container_name: hODRL-cli
     profiles: ["manual"]
     networks:
