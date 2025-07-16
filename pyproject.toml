@@ -26,7 +26,8 @@ packages = ["hodrl"]
 
 [project.optional-dependencies]
 test = [
-    "pytest"
+  "pytest",
+  "click>=8.0"  
 ]
 cli = [     
   "click>=8.0"  
