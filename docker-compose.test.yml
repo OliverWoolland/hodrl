@@ -3,3 +3,16 @@ services:
     volumes:
       - jena-data:/fuseki
       - ./hodrl/test/data/ODRL-w3c-examples.ttl:/fuseki/data.ttl
+
+  pytest:
+    build:
+      context: .
+      dockerfile: Dockerfile.hodrl
+      args:
+        HODRL_CLIENT: test
+    entrypoint: pytest
+    container_name: hODRL-test
+    depends_on:
+      - metadata-store
+    networks:
+      - hODRL
