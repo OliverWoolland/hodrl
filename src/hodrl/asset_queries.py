@@ -10,5 +10,4 @@ SELECT DISTINCT ?asset WHERE {
 """
     
     result = utils.query_fuseki(query)
-    print(result)
     return result
