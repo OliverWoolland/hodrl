@@ -13,11 +13,12 @@ def query_fuseki(query):
     sparql.setQuery(query)
 
     # Perform query
+    result = None
     try:
         ret = sparql.queryAndConvert()
-        bindings = ret.get("results").get("bindings")
+        result = ret.get("results").get("bindings")
     except Exception as e:
         print(e)
 
     # Return
-    return bindings
+    return result
