@@ -48,7 +48,7 @@ services:
     environment:
       ADMIN_PASSWORD: admin
     volumes:
-      - jena-data:/fuseki
+      - hodrl-data:/fuseki
       - ./config/metadata-store/config.ttl:/fuseki/config.ttl
       - ./config/metadata-store/vocabulary.ttl:/fuseki/vocabulary.ttl
       - ./hodrl/test/data/ODRL-w3c-examples.ttl:/fuseki/data.ttl # temporary
@@ -60,6 +60,6 @@ networks:
     name: hODRL
 
 volumes:
-  jena-data:
-    name: jena-data
+  hodrl-data:
+    name: hodrl-data
   
