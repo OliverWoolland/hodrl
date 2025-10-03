@@ -51,7 +51,7 @@ services:
       - hodrl-data:/fuseki
       - ./config/metadata-store/config.ttl:/fuseki/config.ttl
       - ./config/metadata-store/vocabulary.ttl:/fuseki/vocabulary.ttl
-      - ./hodrl/test/data/ODRL-w3c-examples.ttl:/fuseki/data.ttl # temporary
+      - ./tests/data/ODRL-w3c-examples.ttl:/fuseki/data.ttl # temporary
     networks:
       - hODRL
 
