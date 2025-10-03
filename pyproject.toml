@@ -22,7 +22,9 @@ classifiers = [
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-packages = ["hodrl"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [project.optional-dependencies]
 test = [
@@ -30,7 +32,11 @@ test = [
   "click>=8.0",
   "fastapi==0.116.0",
   "uvicorn==0.35.0",
-  "httpx"
+  "httpx",
+  "dash",
+  "dash-iconify",
+  "dash-bootstrap-components",
+  "dash-mantine-components",
 ]
 cli = [     
   "click>=8.0"  
